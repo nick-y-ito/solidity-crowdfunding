@@ -18,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/uskayyyyy/solidity-cloudfunding/issues"
   },
-  "homepage": "https://github.com/uskayyyyy/solidity-cloudfunding#readme"
+  "homepage": "https://github.com/uskayyyyy/solidity-cloudfunding#readme",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.2",
+    "fs-extra": "^10.1.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^10.1.0",
+    "solc": "^0.4.17",
+    "web3": "^1.8.1"
+  }
 }
