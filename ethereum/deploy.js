@@ -1,9 +1,10 @@
+require("dotenv").config();
+
 // Provider
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const mnemonicPhrase = "aaa bbb ccc ddd eee fff ggg hhh iii jjj kkk lll";
 const provider = new HDWalletProvider({
-	mnemonic: mnemonicPhrase,
-	providerOrUrl: "https://goerli.infura.io/v3/xxxxxxxxxxxxxxxxxxxxxxxx",
+	mnemonic: process.env.MNEMONIC,
+	providerOrUrl: process.env.GORLI_NODE_ENDPOINT,
 });
 
 // Web3
