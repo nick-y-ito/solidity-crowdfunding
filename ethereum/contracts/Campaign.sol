@@ -1,14 +1,16 @@
-pragma solidity ^0.4.17;
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.9;
 
 contract CampaignFactory {
-    address[] public deployedCampaigns;
+    address payable[] public deployedCampaigns;
 
     function createCampaign(uint minimum) public {
-        address newCampaign = new Campaign(minimum, msg.sender);
-        deployedCampaigns.push(newCampaign);
+        address newCampaign = address(new Campaign(minimum, msg.sender));
+        deployedCampaigns.push(payable(newCampaign));
     }
 
-    function getDeployedCampaigns() public view returns (address[]) {
+    function getDeployedCampaigns() public view returns (address payable[] memory) {
         return deployedCampaigns;
     }
 }
@@ -29,12 +31,12 @@ contract Campaign {
     mapping(address => bool) public approvers;
     uint public approversCount;
 
-    modifier restricted {
+    modifier restricted() {
         require(msg.sender == manager);
         _;
     }
 
-    function Campaign(uint minimum, address creator) public {
+    constructor(uint minimum, address creator) {
         manager = creator;
         minimumContribution = minimum;
     }
@@ -46,15 +48,13 @@ contract Campaign {
         approversCount++;
     }
 
-    function createRequest(string description, uint value, address recipient) public restricted {
-        Request memory newRequest = Request({
-            description: description,
-            value: value,
-            recipient: recipient,
-            complete: false,
-            approvalsCount: 0
-        });
-        requests.push(newRequest);
+    function createRequest(string memory description, uint value, address recipient) public restricted {
+        Request storage newRequest = requests.push();
+        newRequest.description = description;
+        newRequest.value = value;
+        newRequest.recipient = recipient;
+        newRequest.complete = false;
+        newRequest.approvalsCount = 0;
     }
 
     function approveRequest(uint index) public {
@@ -73,7 +73,7 @@ contract Campaign {
         require(targetRequest.approvalsCount >= (approversCount / 2));
         require(!targetRequest.complete);
 
-        targetRequest.recipient.transfer(targetRequest.value);
+        payable(targetRequest.recipient).transfer(targetRequest.value);
         targetRequest.complete = true;
     }
 }
