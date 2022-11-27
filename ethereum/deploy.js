@@ -1,18 +1,19 @@
-require("dotenv").config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // Provider
-const HDWalletProvider = require("@truffle/hdwallet-provider");
+import HDWalletProvider from "@truffle/hdwallet-provider";
 const provider = new HDWalletProvider({
 	mnemonic: process.env.MNEMONIC,
 	providerOrUrl: process.env.GORLI_NODE_ENDPOINT,
 });
 
 // Web3
-const Web3 = require("web3");
+import Web3 from "web3";
 const web3 = new Web3(provider);
 
 // Contract
-const compiledFactory = require("../ethereum/build/CampaignFactory.json");
+import compiledFactory from "../ethereum/build/CampaignFactory.json" assert { type: "json" };
 
 // Deployment
 const deploy = async () => {
