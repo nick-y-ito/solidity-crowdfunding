@@ -1,11 +1,11 @@
-const assert = require("assert");
-const ganache = require("ganache-cli");
-const Web3 = require("web3");
+import assert from "assert";
+import ganache from "ganache-cli";
+import Web3 from "web3";
 const web3 = new Web3(ganache.provider());
 
 // Contracts
-const compiledFactory = require("../ethereum/build/CampaignFactory.json");
-const compiledCampaign = require("../ethereum/build/Campaign.json");
+import compiledFactory from "../ethereum/build/CampaignFactory.json" assert { type: "json" };
+import compiledCampaign from "../ethereum/build/Campaign.json" assert { type: "json" };
 
 let accounts;
 let managerAccount;
