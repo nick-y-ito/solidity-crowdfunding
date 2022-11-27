@@ -10,17 +10,20 @@ fs.removeSync(buildPath);
 // Compile contract file
 const campaignPath = path.resolve(__dirname, "contracts", "Campaign.sol");
 const source = fs.readFileSync(campaignPath, "utf8");
-const compiledContracts = solc.compile(source, 1).contracts;
+const input = {
+	language: "Solidity",
+	sources: { "Campaign.sol": { content: source } },
+	settings: { outputSelection: { "*": { "*": ["*"] } } },
+};
+const compiledContracts = JSON.parse(solc.compile(JSON.stringify(input))).contracts['Campaign.sol'];
 
 // Check if the directory exists
 fs.ensureDirSync(buildPath);
 
 // Create JSON file of each contract
-let fileName;
 for (let contract in compiledContracts) {
-    fileName = contract.replace(':', '');
-    fs.outputJSONSync(
-        path.resolve(buildPath, fileName + '.json'),
-        compiledContracts[contract]
-    );
+	fs.outputJSONSync(
+		path.resolve(buildPath, contract + ".json"),
+		compiledContracts[contract]
+	);
 }
