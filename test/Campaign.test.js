@@ -23,13 +23,13 @@ beforeEach(async () => {
 	vendorAccount = accounts[9];
 
 	// Factory contract instance (Deploying Factory contract)
-	factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
+	factory = await new web3.eth.Contract(compiledFactory.abi)
 		.deploy({
-			data: compiledFactory.bytecode,
+			data: compiledFactory.evm.bytecode.object,
 		})
 		.send({
 			from: managerAccount,
-			gas: "1000000",
+			gas: "1200000",
 		});
 
 	// Campaign deployment
@@ -41,7 +41,7 @@ beforeEach(async () => {
 
 	// Campaign contract instance (Accessing deployed campaign contract)
 	campaign = await new web3.eth.Contract(
-		JSON.parse(compiledCampaign.interface),
+		compiledCampaign.abi,
 		campaignAddress
 	);
 });
