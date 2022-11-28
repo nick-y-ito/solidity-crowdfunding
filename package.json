@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/uskayyyyy/solidity-cloudfunding#readme",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.15",
     "@truffle/hdwallet-provider": "^2.1.2",
     "dotenv": "^16.0.3",
     "fs-extra": "^10.1.0",
