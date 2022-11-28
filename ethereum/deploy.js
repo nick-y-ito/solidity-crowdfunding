@@ -1,11 +1,8 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 // Provider
 import HDWalletProvider from "@truffle/hdwallet-provider";
 const provider = new HDWalletProvider({
-	mnemonic: process.env.MNEMONIC,
-	providerOrUrl: process.env.GORLI_NODE_ENDPOINT,
+	mnemonic: process.env.NEXT_PUBLIC_MNEMONIC,
+	providerOrUrl: process.env.NEXT_PUBLIC_GORLI_NODE_ENDPOINT,
 });
 
 // Web3
