@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Header from "src/components/header";
 
 function Layout({ children }) {
 	return (
@@ -6,6 +7,7 @@ function Layout({ children }) {
 			<Head>
 				<title>Kickstarter</title>
 			</Head>
+			<Header />
 			<main>{children}</main>
 		</>
 	);
