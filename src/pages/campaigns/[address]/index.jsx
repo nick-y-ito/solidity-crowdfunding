@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Layout from "src/components/layout";
+import Layout from "src/components/Layout";
 
 function Campaign() {
 	const router = useRouter();
