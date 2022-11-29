@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Header from "src/components/Header";
+import Container from "@mui/material/Container";
 
 function Layout({ children }) {
 	return (
@@ -8,7 +9,9 @@ function Layout({ children }) {
 				<title>Kickstarter</title>
 			</Head>
 			<Header />
-			<main>{children}</main>
+			<Container>
+				<main>{children}</main>
+			</Container>
 		</>
 	);
 }
