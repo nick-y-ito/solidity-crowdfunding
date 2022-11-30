@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 // Provider
 import HDWalletProvider from "@truffle/hdwallet-provider";
 const provider = new HDWalletProvider({
@@ -20,7 +23,7 @@ const deploy = async () => {
 
 	const result = await new web3.eth.Contract(compiledFactory.abi)
 		.deploy({ data: compiledFactory.evm.bytecode.object })
-		.send({ from: accounts[0], gas: "1200000" });
+		.send({ from: accounts[0], gas: "1400000" });
 
     console.log("Contract deployed to ", result.options.address);
 
