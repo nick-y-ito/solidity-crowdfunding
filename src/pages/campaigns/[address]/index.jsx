@@ -1,6 +1,7 @@
 import web3 from "ethereum/web3";
 import campaign from "ethereum/campaign";
 import Layout from "src/components/Layout";
+import ContributeArea from "src/components/ContributeArea";
 import Grid from "@mui/material/Grid";
 import CampaignSummaryCard from "src/components/CampaignSummaryCard";
 import Typography from "@mui/material/Typography";
@@ -56,6 +57,7 @@ function Campaign({ campaignAddress, cardItems }) {
 					})}
 				</Grid>
 				<Grid item xs={12} md={5}>
+					<ContributeArea campaignAddress={campaignAddress} />
 				</Grid>
 			</Grid>
 		</Layout>
