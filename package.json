@@ -31,6 +31,7 @@
     "@mui/lab": "^5.0.0-alpha.110",
     "@mui/material": "^5.10.16",
     "@truffle/hdwallet-provider": "^2.1.2",
+    "dotenv": "^16.0.3",
     "fs-extra": "^10.1.0",
     "ganache": "^7.5.0",
     "mocha": "^10.1.0",
