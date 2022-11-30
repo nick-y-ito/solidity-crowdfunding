@@ -25,6 +25,14 @@ contract Campaign {
         mapping(address => bool) approvals;
     }
 
+    struct Summary {
+        address manager;
+        uint256 minimumContribution;
+        uint256 requestsCount;
+        uint256 approversCount;
+        uint256 balance;
+    }
+
     Request[] public requests;
     address public manager;
     uint public minimumContribution;
@@ -75,5 +83,15 @@ contract Campaign {
 
         payable(targetRequest.recipient).transfer(targetRequest.value);
         targetRequest.complete = true;
+    }
+
+    function getSummary() public view returns (Summary memory) {
+        return Summary({
+            manager: manager,
+            minimumContribution: minimumContribution,
+            requestsCount: requests.length,
+            approversCount: approversCount,
+            balance: address(this).balance
+        });
     }
 }
