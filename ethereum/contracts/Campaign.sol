@@ -94,4 +94,8 @@ contract Campaign {
             balance: address(this).balance
         });
     }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
+    }
 }
