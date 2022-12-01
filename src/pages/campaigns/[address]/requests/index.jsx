@@ -1,7 +1,11 @@
 import campaign from "ethereum/campaign";
+import Link from "next/link";
 import Layout from "src/components/Layout";
+import Grid from "@mui/material/Grid";
 import RequestsTable from "src/components/RequestsTable";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { AddCircle } from "@mui/icons-material";
 
 Requests.getInitialProps = async (props) => {
 	const campaignAddress = props.query.address;
@@ -21,15 +25,27 @@ Requests.getInitialProps = async (props) => {
 		})
 	);
 
-	return { requests, approversCount };
+	return { campaignAddress, requests, approversCount };
 };
 
-function Requests({ requests, approversCount }) {
+function Requests({ campaignAddress, requests, approversCount }) {
 	return (
 		<Layout>
-			<Typography variant="h5" sx={{ mb: 3 }}>
-				Requests
-			</Typography>
+			<Typography variant="h5">Requests</Typography>
+			<Grid container justifyContent="flex-end" sx={{ mb: 1 }}>
+				<Link
+					href={`/campaigns/${campaignAddress}/requests/new`}
+					style={{ textDecoration: "none" }}
+				>
+					<Button
+						variant="contained"
+						startIcon={<AddCircle />}
+						style={{ textTransform: "none" }}
+					>
+						Add Requests
+					</Button>
+				</Link>
+			</Grid>
 			<RequestsTable requests={requests} approversCount={approversCount} />
 		</Layout>
 	);
