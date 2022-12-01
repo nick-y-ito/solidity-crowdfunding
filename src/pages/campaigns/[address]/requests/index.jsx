@@ -46,7 +46,11 @@ function Requests({ campaignAddress, requests, approversCount }) {
 					</Button>
 				</Link>
 			</Grid>
-			<RequestsTable requests={requests} approversCount={approversCount} />
+			<RequestsTable
+				campaignAddress={campaignAddress}
+				requests={requests}
+				approversCount={approversCount}
+			/>
 		</Layout>
 	);
 }
