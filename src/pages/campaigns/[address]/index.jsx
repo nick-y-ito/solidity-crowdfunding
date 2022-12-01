@@ -1,10 +1,12 @@
 import web3 from "ethereum/web3";
 import campaign from "ethereum/campaign";
+import Link from "next/link";
 import Layout from "src/components/Layout";
 import ContributeArea from "src/components/ContributeArea";
 import Grid from "@mui/material/Grid";
 import CampaignSummaryCard from "src/components/CampaignSummaryCard";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 Campaign.getInitialProps = async (props) => {
 	const campaignAddress = props.query.address;
@@ -51,10 +53,24 @@ function Campaign({ campaignAddress, cardItems }) {
 				Campaign at "{campaignAddress}"
 			</Typography>
 			<Grid container spacing={9}>
-				<Grid container item xs={12} md={7} spacing={2}>
-					{cardItems.map((item, index) => {
-						return <CampaignSummaryCard key={index} content={item} />;
-					})}
+				<Grid container item xs={12} md={7}>
+					<Grid container direction="column" spacing={2}>
+						<Grid container item direction="row" spacing={2}>
+							{cardItems.map((item, index) => {
+								return <CampaignSummaryCard key={index} content={item} />;
+							})}
+						</Grid>
+						<Grid item>
+							<Link
+								href={`/campaigns/${campaignAddress}/requests`}
+								style={{ textDecoration: "none" }}
+							>
+								<Button variant="contained" style={{ textTransform: "none" }}>
+									View Requests
+								</Button>
+							</Link>
+						</Grid>
+					</Grid>
 				</Grid>
 				<Grid item xs={12} md={5}>
 					<ContributeArea campaignAddress={campaignAddress} />
